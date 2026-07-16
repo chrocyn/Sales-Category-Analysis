@@ -1,0 +1,49 @@
+Order Date,Region,Product Category,Product Name,Sales Amount,Quantity Sold,Profit
+2025-01-05,North,Electronics,Smartphone,1850,10,420
+2025-01-11,South,Clothing,Winter Jacket,960,16,220
+2025-01-18,West,Furniture,Office Chair,1320,8,310
+2025-01-25,East,Groceries,Organic Basket,680,25,95
+2025-02-03,North,Electronics,Laptop,2560,7,640
+2025-02-10,South,Clothing,Denim Collection,880,18,190
+2025-02-15,West,Furniture,Coffee Table,1180,6,240
+2025-02-23,East,Sports,Fitness Band,910,14,205
+2025-03-02,North,Electronics,Tablet,1490,11,330
+2025-03-08,South,Clothing,Spring Wear,1040,20,250
+2025-03-16,West,Furniture,Bookshelf,1410,7,295
+2025-03-27,East,Groceries,Household Combo,720,29,110
+2025-04-04,North,Electronics,Wireless Earbuds,1110,22,285
+2025-04-12,South,Clothing,Casual Shirts,980,21,210
+2025-04-19,West,Furniture,Study Desk,1690,9,360
+2025-04-28,East,Sports,Yoga Mat Set,830,17,180
+2025-05-06,North,Electronics,Smartwatch,1720,13,410
+2025-05-13,South,Clothing,Summer Collection,1090,24,265
+2025-05-21,West,Furniture,Wardrobe,2210,5,520
+2025-05-29,East,Groceries,Family Essentials,760,31,112
+2025-06-03,North,Electronics,Gaming Console,2380,6,575
+2025-06-11,South,Clothing,Kids Apparel,970,19,208
+2025-06-18,West,Furniture,Dining Table,2640,4,620
+2025-06-26,East,Sports,Home Gym Kit,1250,10,295
+2025-07-05,North,Electronics,4K Monitor,1940,8,450
+2025-07-12,South,Clothing,Festive Prep Wear,1210,22,305
+2025-07-20,West,Furniture,Sofa Set,3180,3,780
+2025-07-29,East,Groceries,Monsoon Essentials,810,34,120
+2025-08-02,North,Electronics,Air Purifier,1670,9,385
+2025-08-09,South,Clothing,Back to School,990,20,220
+2025-08-17,West,Furniture,Shoe Rack,890,11,175
+2025-08-25,East,Sports,Cycling Helmet,760,15,168
+2025-09-04,North,Electronics,Bluetooth Speaker,1280,18,300
+2025-09-14,South,Clothing,Festive Collection,1480,26,360
+2025-09-19,West,Furniture,TV Unit,1840,6,405
+2025-09-28,East,Groceries,Festival Combo Pack,980,38,150
+2025-10-03,North,Electronics,Premium Laptop,3290,5,840
+2025-10-10,South,Clothing,Holiday Fashion,1570,28,390
+2025-10-18,West,Furniture,Recliner,2860,4,690
+2025-10-26,East,Sports,Running Shoes,1390,12,320
+2025-11-05,North,Electronics,Smart TV,3420,4,910
+2025-11-12,South,Clothing,Winter Launch,1660,23,430
+2025-11-19,West,Furniture,Bed Frame,2740,5,655
+2025-11-27,East,Groceries,Holiday Basket,1120,40,172
+2025-12-04,North,Electronics,Flagship Phone,3680,6,960
+2025-12-11,South,Clothing,Year End Sale,1710,30,415
+2025-12-19,West,Furniture,Storage Cabinet,1960,7,430
+2025-12-28,East,Sports,Treadmill,2480,3,610

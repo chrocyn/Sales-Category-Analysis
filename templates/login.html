@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login | Sales by Category Analysis</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body class="login-body">
+    <section class="login-layout">
+        <div class="login-copy">
+            <span class="eyebrow">Sales by Category Analysis</span>
+            <h1>Turn raw sales files into category-level decisions.</h1>
+            <p>This web app gives you a complete flow: login, upload a CSV, analyze performance, and review revenue trends through charts and summary tables.</p>
+            <div class="demo-box">
+                <p>Demo login</p>
+                <strong>Username:</strong> {{ demo_username }}<br>
+                <strong>Password:</strong> {{ demo_password }}
+            </div>
+        </div>
+
+        <form method="post" class="login-card">
+            <h2>Login</h2>
+            <label for="username">Username</label>
+            <input id="username" name="username" type="text" placeholder="Enter username" required>
+
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password" placeholder="Enter password" required>
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="flash flash-{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+            <button type="submit">Sign In</button>
+        </form>
+    </section>
+</body>
+</html>

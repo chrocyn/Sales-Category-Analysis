@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+{% set title = "Sales Predictions" %}
+{% block content %}
+<section class="hero">
+    <span class="eyebrow">Page 6 of 6</span>
+    <h2>AI-Powered Sales Forecast</h2>
+    <p>Machine learning predictions for next 6 months based on historical analysis of <strong>{{ analysis.source_name }}</strong>.</p>
+</section>
+
+<section class="metric-grid">
+    <article class="metric-card">
+        <span>Overall Trend</span>
+        <strong>{{ forecast.trend }}</strong>
+    </article>
+    <article class="metric-card">
+        <span>Trend Strength</span>
+        <strong>{{ forecast.trend_strength }} units/mo</strong>
+    </article>
+    <article class="metric-card">
+        <span>Avg Historical Sales</span>
+        <strong>${{ forecast.average_historical_sales }}</strong>
+    </article>
+    <article class="metric-card">
+        <span>Avg Predicted Sales</span>
+        <strong>${{ forecast.average_predicted_sales }}</strong>
+    </article>
+    <article class="metric-card">
+        <span>Forecast Confidence</span>
+        <strong>{{ forecast.confidence_score }}%</strong>
+    </article>
+    <article class="metric-card">
+        <span>Forecast Months</span>
+        <strong>6 months</strong>
+    </article>
+</section>
+
+<section class="split-grid">
+    <article class="panel">
+        <h3>Key Insights & Recommendations</h3>
+        <ul class="list">
+            {% for insight in forecast.insights %}
+                {% if insight %}
+                    <li>{{ insight }}</li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </article>
+
+    <article class="panel accent">
+        <h3>6-Month Sales Forecast</h3>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Month</th>
+                        <th>Predicted Sales</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for forecast_row in forecast.overall_forecast %}
+                    <tr>
+                        <td>{{ forecast_row.Month }}</td>
+                        <td>${{ forecast_row.Predicted_Sales }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </article>
+</section>
+
+{% if forecast.category_forecasts %}
+<section class="panel">
+    <h3>Category-wise Forecast Details</h3>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Trend</th>
+                    <th>Growth Rate</th>
+                    <th>Forecast (Next Month)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for category, forecast_data in forecast.category_forecasts.items() %}
+                <tr>
+                    <td>{{ category }}</td>
+                    <td>{{ forecast_data.trend }}</td>
+                    <td>{{ forecast_data.growth_rate | round(2) }}% / month</td>
+                    <td>${{ forecast_data.predictions[0] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endif %}
+
+<section class="panel">
+    <h3>How This Forecast Works</h3>
+    <p>
+        This forecast uses <strong>Linear Regression Machine Learning</strong> to analyze historical sales trends and project future performance. 
+        The model identifies patterns in monthly sales data and category-specific trends, then extrapolates these patterns to predict the next 6 months.
+    </p>
+    <p>
+        <strong>Key Features:</strong>
+    </p>
+    <ul>
+        <li><strong>Overall Trend:</strong> Analyzes if sales are generally increasing or decreasing</li>
+        <li><strong>Category Analysis:</strong> Forecasts per-category growth rates to identify opportunities and risks</li>
+        <li><strong>Confidence Score:</strong> Indicates prediction reliability based on historical data consistency</li>
+        <li><strong>Growth Rate:</strong> Shows monthly percentage change for each category</li>
+    </ul>
+    <p>
+        <em>Note: Predictions are based on historical trends. External factors like market changes, promotions, or seasonality should be considered when making business decisions.</em>
+    </p>
+</section>
+
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% set title = "Home" %}
+{% block content %}
+<section class="hero">
+    <span class="eyebrow">Page 2 of 6</span>
+    <h2>Welcome to the sales analysis workspace.</h2>
+    <p>Use the upload page to bring in a CSV file or start with the included sample dataset. Once analysis is complete, the next pages will show category metrics, findings, and visual dashboards.</p>
+</section>
+
+<section class="card-grid">
+    <article class="panel">
+        <h3>What you can do here</h3>
+        <ul class="list">
+            <li>Upload a sales CSV file</li>
+            <li>Review category revenue, quantity, and profit</li>
+            <li>Spot peak months and weaker categories</li>
+            <li>Open charts for revenue contribution and trends</li>
+        </ul>
+    </article>
+
+    <article class="panel accent">
+        <h3>Required columns</h3>
+        <ul class="list">
+            <li><code>Order Date</code></li>
+            <li><code>Region</code></li>
+            <li><code>Product Category</code></li>
+            <li><code>Product Name</code></li>
+            <li><code>Sales Amount</code></li>
+            <li><code>Quantity Sold</code></li>
+            <li><code>Profit</code></li>
+        </ul>
+    </article>
+    
+    <article class="panel">
+        <h3>Current status</h3>
+        {% if analysis %}
+            <p><strong>Dataset:</strong> {{ analysis.dataset_label }}</p>
+            <p><strong>Source:</strong> {{ analysis.source_name }}</p>
+            <p><strong>Top category:</strong> {{ analysis.overview.top_category }}</p>
+            <p><strong>Best month:</strong> {{ analysis.overview.best_month }}</p>
+        {% else %}
+            <p>No dataset has been analyzed in this session yet.</p>
+            <a class="button-link" href="{{ url_for('upload') }}">Go to Upload</a>
+        {% endif %}
+    </article>
+</section>
+{% endblock %}

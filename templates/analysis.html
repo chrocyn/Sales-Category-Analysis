@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+{% set title = "Analysis" %}
+{% block content %}
+<section class="hero">
+    <span class="eyebrow">Page 4 of 6</span>
+    <h2>Category performance analysis</h2>
+    <p>Review the dataset overview, key findings, and category-level performance summary for <strong>{{ analysis.source_name }}</strong>.</p>
+</section>
+
+<section class="metric-grid">
+    <article class="metric-card">
+        <span>Total Revenue</span>
+        <strong>{{ analysis.overview.total_revenue }}</strong>
+    </article>
+    <article class="metric-card">
+        <span>Total Profit</span>
+        <strong>{{ analysis.overview.total_profit }}</strong>
+    </article>
+    <article class="metric-card">
+        <span>Quantity Sold</span>
+        <strong>{{ analysis.overview.total_quantity }}</strong>
+    </article>
+    <article class="metric-card">
+        <span>Top Category</span>
+        <strong>{{ analysis.overview.top_category }}</strong>
+    </article>
+    <article class="metric-card">
+        <span>Lowest Category</span>
+        <strong>{{ analysis.overview.lowest_category }}</strong>
+    </article>
+    <article class="metric-card">
+        <span>Best Month</span>
+        <strong>{{ analysis.overview.best_month }}</strong>
+    </article>
+</section>
+
+<section class="split-grid">
+    <article class="panel">
+        <h3>Key findings</h3>
+        <ul class="list">
+            {% for line in analysis.findings %}
+                {% if line %}
+                    <li>{{ line }}</li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </article>
+
+    <article class="panel accent">
+        <h3>Region summary</h3>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Region</th>
+                        <th>Revenue</th>
+                        <th>Profit</th>
+                        <th>Quantity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in analysis.region_rows %}
+                    <tr>
+                        <td>{{ row.Region }}</td>
+                        <td>{{ row.Total_Revenue }}</td>
+                        <td>{{ row.Total_Profit }}</td>
+                        <td>{{ row.Total_Quantity }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </article>
+</section>
+
+<section class="panel">
+    <h3>Category summary</h3>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Revenue</th>
+                    <th>Quantity</th>
+                    <th>Profit</th>
+                    <th>Avg Sale</th>
+                    <th>Margin %</th>
+                    <th>Revenue %</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in analysis.category_rows %}
+                <tr>
+                    <td>{{ row['Product Category'] }}</td>
+                    <td>{{ row.Total_Revenue }}</td>
+                    <td>{{ row.Total_Quantity }}</td>
+                    <td>{{ row.Total_Profit }}</td>
+                    <td>{{ row.Average_Sale }}</td>
+                    <td>{{ row.Average_Profit_Margin }}</td>
+                    <td>{{ row['Revenue_Contribution_%'] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,18 @@
+Sales by Category Analysis - Key Findings
+
+Top performing category: Electronics
+Total revenue: 26390
+Total profit: 6505
+
+Lowest performing category by revenue: Groceries
+Total revenue: 5070
+Total profit: 759
+
+Best sales month overall: 2025-12
+Monthly revenue: 9830
+
+Top revenue region: North
+Regional revenue: 26390
+
+Business recommendation:
+Invest more in the strongest categories, review pricing and promotions for weaker categories, and prepare inventory for peak seasonal months.

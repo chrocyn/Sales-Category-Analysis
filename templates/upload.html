@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% set title = "Upload Data" %}
+{% block content %}
+<section class="hero">
+    <span class="eyebrow">Page 3 of 6</span>
+    <h2>Upload a sales dataset</h2>
+    <p>Upload a CSV file with the required sales columns, or use the built-in sample data to see the full workflow immediately.</p>
+</section>
+
+<section class="split-grid">
+    <article class="panel">
+        <h3>Upload CSV</h3>
+        <form method="post" enctype="multipart/form-data" class="stack-form">
+            <input type="hidden" name="action" value="upload">
+            <div class="file-input-wrapper">
+                <label for="sales_file" class="file-label">Choose CSV file</label>
+                <div class="file-input-container">
+                    <input id="sales_file" name="sales_file" type="file" accept=".csv" required onchange="updateFileName(this)">
+                    <span id="file-name" class="file-display">No file chosen</span>
+                </div>
+            </div>
+            <button type="submit" class="btn-primary">Upload and Analyze</button>
+        </form>
+    </article>
+
+    <article class="panel accent">
+        <h3>Use sample dataset</h3>
+        <p>If you want to preview the app without preparing a CSV first, load the included sample file.</p>
+        <form method="post">
+            <input type="hidden" name="action" value="sample">
+            <button type="submit" class="btn-primary">Analyze Sample Data</button>
+        </form>
+    </article>
+</section>
+
+<section class="panel">
+    <h3>Expected file structure</h3>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Column</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Order Date</td><td>Transaction or order date</td></tr>
+                <tr><td>Region</td><td>Geographic sales area</td></tr>
+                <tr><td>Product Category</td><td>Category name such as Electronics or Clothing</td></tr>
+                <tr><td>Product Name</td><td>Specific product sold</td></tr>
+                <tr><td>Sales Amount</td><td>Revenue from the transaction</td></tr>
+                <tr><td>Quantity Sold</td><td>Units sold</td></tr>
+                <tr><td>Profit</td><td>Profit or loss amount</td></tr>
+            </tbody>
+        </table>
+    </div>
+    {% if analysis %}
+        <p class="helper-text">Latest analyzed source: {{ analysis.source_name }}</p>
+    {% endif %}
+</section>
+
+<script>
+function updateFileName(input) {
+    const fileDisplay = document.getElementById('file-name');
+    
+    if (input.files && input.files[0]) {
+        const fileName = input.files[0].name;
+        const fileSize = (input.files[0].size / 1024).toFixed(2);
+        fileDisplay.textContent = `✓ ${fileName} (${fileSize} KB)`;
+        fileDisplay.style.color = '#2ecc71';
+    } else {
+        fileDisplay.textContent = 'No file chosen';
+        fileDisplay.style.color = 'var(--text-secondary)';
+    }
+}
+</script>
+{% endblock %}

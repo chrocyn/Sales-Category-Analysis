@@ -1,0 +1,131 @@
+# -----------------------------------
+# Fake News Detection Project
+# With Data Visualization
+# -----------------------------------
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+from sklearn.model_selection import train_test_split
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.linear_model import LogisticRegression
+from sklearn.tree import DecisionTreeClassifier, plot_tree
+from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
+
+# -----------------------------------
+# 1. Load Dataset
+# -----------------------------------
+fake = pd.read_csv("C:\\Users\\Ashwin Ezra\\Downloads\\archive (5).csv")
+true = pd.read_csv("C:\\Users\\Ashwin Ezra\\Downloads\\true.csv")
+
+fake["label"] = 0
+true["label"] = 1
+
+data = pd.concat([fake, true])
+data = data.sample(frac=1).reset_index(drop=True)
+
+# Combine title and text
+data["content"] = data["title"] + " " + data["text"]
+
+# -----------------------------------
+# 2. Data Visualization
+# -----------------------------------
+
+# Fake vs Real News Count
+plt.figure()
+sns.countplot(x='label', data=data)
+plt.title("Fake vs Real News Count")
+plt.xlabel("0 = Fake, 1 = Real")
+plt.ylabel("Count")
+plt.show()
+
+# Subject Distribution
+plt.figure()
+sns.countplot(y='subject', data=data)
+plt.title("News Subject Distribution")
+plt.show()
+
+# Text Length Distribution
+data["text_length"] = data["text"].apply(len)
+
+plt.figure()
+sns.histplot(data["text_length"])
+plt.title("Text Length Distribution")
+plt.xlabel("Length of News Text")
+plt.show()
+
+# -----------------------------------
+# 3. Feature Extraction (TF-IDF)
+# -----------------------------------
+X = data["content"]
+y = data["label"]
+
+vectorizer = TfidfVectorizer(stop_words='english', max_df=0.7)
+X = vectorizer.fit_transform(X)
+
+# -----------------------------------
+# 4. Train Test Split
+# -----------------------------------
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.25, random_state=42
+)
+
+# -----------------------------------
+# 5. Logistic Regression Model
+# -----------------------------------
+lr_model = LogisticRegression()
+lr_model.fit(X_train, y_train)
+
+y_pred_lr = lr_model.predict(X_test)
+
+print("Logistic Regression Accuracy:", accuracy_score(y_test, y_pred_lr))
+
+# -----------------------------------
+# 6. Decision Tree Model
+# -----------------------------------
+dt_model = DecisionTreeClassifier(max_depth=3)
+dt_model.fit(X_train, y_train)
+
+y_pred_dt = dt_model.predict(X_test)
+
+print("Decision Tree Accuracy:", accuracy_score(y_test, y_pred_dt))
+
+# -----------------------------------
+# 7. Decision Tree Visualization
+# -----------------------------------
+plt.figure(figsize=(12,8))
+plot_tree(dt_model, filled=True)
+plt.title("Decision Tree Visualization")
+plt.show()
+
+# -----------------------------------
+# 8. Model Evaluation
+# -----------------------------------
+print("\nConfusion Matrix:")
+print(confusion_matrix(y_test, y_pred_lr))
+
+print("\nClassification Report:")
+print(classification_report(y_test, y_pred_lr))
+
+# -----------------------------------
+# 9. Fake News Prediction Function
+# -----------------------------------
+def predict_news(news_text):
+    transformed = vectorizer.transform([news_text])
+    prediction = lr_model.predict(transformed)
+
+    if prediction[0] == 0:
+        return "Fake News"
+    else:
+        return "Real News"
+
+# -----------------------------------
+# 10. Test Custom News
+# -----------------------------------
+sample_news = "Breaking: Government announces new education policy"
+
+print("\nSample News Prediction:")
+print(sample_news)
+print("Result:", predict_news(sample_news))

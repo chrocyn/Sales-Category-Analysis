@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% set title = "Visualizations" %}
+{% block content %}
+<section class="hero">
+    <span class="eyebrow">Page 5 of 6</span>
+    <h2>Visual sales dashboard</h2>
+    <p>These charts are generated from your latest uploaded or sample dataset and saved automatically after each analysis run.</p>
+</section>
+
+<section class="viz-grid">
+    <article class="panel">
+        <h3>Revenue by category</h3>
+        <img src="{{ url_for('static', filename='generated/' ~ analysis.charts.bar_chart, v=analysis.chart_version) }}" alt="Revenue by category chart" class="chart-image">
+    </article>
+    <article class="panel">
+        <h3>Revenue contribution</h3>
+        <img src="{{ url_for('static', filename='generated/' ~ analysis.charts.pie_chart, v=analysis.chart_version) }}" alt="Revenue contribution pie chart" class="chart-image">
+    </article>
+    <article class="panel full-span">
+        <h3>Monthly category trend</h3>
+        <img src="{{ url_for('static', filename='generated/' ~ analysis.charts.trend_chart, v=analysis.chart_version) }}" alt="Monthly sales trend chart" class="chart-image">
+    </article>
+</section>
+
+<section class="panel">
+    <h3>Monthly trend snapshot</h3>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Month</th>
+                    <th>Category</th>
+                    <th>Sales Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in analysis.monthly_rows %}
+                <tr>
+                    <td>{{ row.Month }}</td>
+                    <td>{{ row['Product Category'] }}</td>
+                    <td>{{ row['Sales Amount'] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endblock %}
