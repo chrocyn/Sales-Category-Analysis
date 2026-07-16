@@ -1,0 +1,11 @@
+Order Date,Region,Product Category,Product Name,Sales Amount,Quantity Sold,Profit
+2024-01-15,North,Electronics,Laptop,1500.00,2,300.00
+2024-01-16,South,Clothing,Shirt,50.00,5,10.00
+2024-01-17,East,Electronics,Mouse,25.00,10,5.00
+2024-01-18,West,Furniture,Chair,200.00,1,50.00
+2024-01-19,North,Clothing,Pants,75.00,3,15.00
+2024-01-20,South,Electronics,Monitor,400.00,1,80.00
+2024-01-21,East,Furniture,Desk,500.00,1,100.00
+2024-01-22,West,Clothing,Shoes,80.00,2,16.00
+2024-01-23,North,Electronics,Keyboard,60.00,4,12.00
+2024-01-24,South,Furniture,Table,300.00,1,60.00
